@@ -37,7 +37,7 @@ public class TodoRepository {
     }
 
     public int update(Todo todo) {
-        String sql = " UPDSTE todos SET title = ?, completed = ? WHERE id = ? AND user_id = ? ";
+        String sql = " UPDATE todos SET title = ?, completed = ? WHERE id = ? AND user_id = ? ";
 
         return jdbcTemplate.update(sql, todo.getTitle(), todo.isCompleted(), todo.getId(), todo.getUserId());
     }

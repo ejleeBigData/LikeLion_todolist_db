@@ -9,21 +9,30 @@
 <h1>🗝️회원가입</h1>
   <div th:if="${error}" class="error" th:text="${error}"></div>
   <form th:action="@{/signup}" th:object="${signupDto}" method="post" class="form-container">
+   <div class="form-group">
     <p>
       <label>
-        아이디 : <input type="text" th:field="*{username}">
+        <span>아이디 : </span>
+        <input type="text" th:field="*{username}" />
       </label>
-      <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error" ></div>
+      <div class="error" th:text="${#fields.hasErrors('username')} ? ${#fields.errors('username')} : ' '">
+      </div>
     </p>
+    </div>
+    <div class="form-group">
     <p>
       <label>
-        비밀번호 : <input type="password" th:field="*{password}">
+        <span>비밀번호 : </span>
+        <input type="password" th:field="*{password}">
       </label>
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error" ></div>
+      <div class="error" th:text="${#fields.hasErrors('password')} ? ${#fields.errors('password')} : ' '">
+      </div>
     </p>
-
-    <button type="submit">가입</button>
-    <a th:href="@{/login}" class="cancel">로그인</a>
+    </div>
+    <div class="button-group">
+      <button type="submit">가입하기</button>
+      <a th:href="@{/login}" class="btn" >로그인</a>
+    </div>
   </form>
 </body>
 </html>
