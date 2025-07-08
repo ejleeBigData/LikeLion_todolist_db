@@ -37,22 +37,20 @@ public class LoginController {
             return "login";
         }
         try {
+
           User user = userRepository.findByUsername(loginDto.getUsername());
 
           if(!user.getPassword().equals(loginDto.getPassword())) {
               model.addAttribute("error", "비밀번호가 올바르지 않습니다.");
-
               return "login";
           }
 
           httpSession.setAttribute("user", user);
-
           return "redirect:/todos";
 
-        }     catch (Exception e) {
+        } catch (Exception e) {
 
             model.addAttribute("error", "존재하지 않는 메세지 입니다.");
-
             return "login";
         }
     }
