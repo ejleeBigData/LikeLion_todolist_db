@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>멋쟁이사자처럼::todolist with DB, DTO</title>
-  <link rel="stylesheet" th:ref="@{/styles.css}" />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
 <h1>🔐로그인</h1>
@@ -11,5 +11,23 @@
   🎈🎈회원가입 완료되었습니다.
   💐💐로그인 해주세요.
 </div>
+<div th:if="${error}" class="error" th:text="${error}"></div>
+<form th:action="@{/login}" th:object="${loginDto}" method="post" class="form-container">
+    <p>
+        <label>
+            아이디 : <input type="text" th:field="*{username}">
+        </label>
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error" ></div>
+    </p>
+    <p>
+        <label>
+            비밀번호 : <input type="password" th:field="*{password}">
+        </label>
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error" ></div>
+    </p>
+
+    <button type="submit">로그인</button>
+    <a th:href="@{/signup}">가입하기</a>
+</form>
 </body>
 </html>

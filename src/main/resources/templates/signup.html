@@ -8,7 +8,7 @@
 <body>
 <h1>🗝️회원가입</h1>
   <div th:if="${error}" class="error" th:text="${error}"></div>
-  <form th:action="@{/signup}" th:object="${signupDTO}" method="post" class="form-container">
+  <form th:action="@{/signup}" th:object="${signupDto}" method="post" class="form-container">
     <p>
       <label>
         아이디 : <input type="text" th:field="*{username}">

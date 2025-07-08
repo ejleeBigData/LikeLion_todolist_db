@@ -1,6 +1,6 @@
 package com.leeej.toDoList2.controller;
 
-import com.leeej.toDoList2.dto.SignupDTO;
+import com.leeej.toDoList2.dto.SignupDto;
 import com.leeej.toDoList2.model.User;
 import com.leeej.toDoList2.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -19,16 +19,16 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String showSignup(Model model) {
-        model.addAttribute("signupDTO", new SignupDTO());
+        model.addAttribute("signupDto", new SignupDto());
 
         return "signup";
     }
 
     @PostMapping("signup")
     public String doSignup(
-       @Valid @ModelAttribute SignupDTO signupDTO,  //유효성 검사
-       BindingResult bindingResult,                 //유효성 검사결과 저장
-       Model model
+            @Valid @ModelAttribute SignupDto signupDto,  //유효성 검사
+            BindingResult bindingResult,                 //유효성 검사결과 저장
+            Model model
     ) {
         if(bindingResult.hasErrors()) {
             return "signup";
@@ -37,8 +37,8 @@ public class SignupController {
         //회원가입시 중복 가입여부 체크
 
         User user = User.builder()
-                .username(signupDTO.getUsername())
-                .password(signupDTO.getPassword())
+                .username(signupDto.getUsername())
+                .password(signupDto.getPassword())
                 .build();
 
         userRepository.save(user);
