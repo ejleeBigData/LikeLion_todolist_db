@@ -9,5 +9,5 @@ public class Todo {
     private Integer id;
     private String  title;
     private boolean completed;
-    private String  userId;
+    private Integer userId;
 }
